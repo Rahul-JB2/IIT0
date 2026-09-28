@@ -1,26 +1,25 @@
-import { ChapterProgress, DailyPlan, MilestoneKey, MockTestResult, UserStudyState } from '../types/jee';
+import { ChapterProgress, UserStudyState } from '../types/jee';
 import { ALL_CHAPTERS } from '../data/super50Data';
 
-const STORAGE_KEY = 'bseb_super50_jee_tracker_v1';
+// Incremented version key to purge all previous dummy/mock seed data
+const STORAGE_KEY = 'bseb_super50_jee_tracker_v3';
 
 export function getDefaultInitialState(): UserStudyState {
-  // Initial chapters progress map
+  // Completely clean initial chapters progress map (0 milestones completed, fresh start)
   const chapterProgress: Record<string, ChapterProgress> = {};
 
   ALL_CHAPTERS.forEach((ch) => {
-    // Sensible initial seed for Part Test 1 chapters (giving a fresh yet active feel)
-    const isPT1 = ch.introducedInTest === 1;
     chapterProgress[ch.id] = {
-      theory: isPT1 && (ch.id === 'phy-1' || ch.id === 'phy-2' || ch.id === 'chm-p1' || ch.id === 'mat-1'),
-      conclusion1Page: isPT1 && (ch.id === 'phy-1' || ch.id === 'chm-p1'),
-      mathongo: isPT1 && (ch.id === 'phy-1'),
+      theory: false,
+      conclusion1Page: false,
+      mathongo: false,
       moduleEx2: false,
       eklavya: false,
       prevPartTest: false,
-      mathongoSolved: isPT1 && ch.id === 'phy-1' ? 42 : 0,
+      mathongoSolved: 0,
       moduleEx2Solved: 0,
       eklavyaSolved: 0,
-      confidenceRating: isPT1 ? 3 : 1,
+      confidenceRating: 1,
     };
   });
 
@@ -29,24 +28,16 @@ export function getDefaultInitialState(): UserStudyState {
     chapterProgress,
     dailyPlans: {},
     mockResults: [],
-    dailyStreak: 3,
+    dailyStreak: 0,
     lastActiveDate: '2026-09-27',
-    studyHoursLoggedTotal: 18.5,
-    dailyStudyHours: {
-      '2026-09-27': 6.5,
-      '2026-09-26': 7.0,
-      '2026-09-25': 5.0,
-    },
-    dailyQuestionsSolved: {
-      '2026-09-27': { total: 72, physics: 28, chemistry: 24, math: 20 },
-      '2026-09-26': { total: 85, physics: 30, chemistry: 30, math: 25 },
-      '2026-09-25': { total: 60, physics: 20, chemistry: 20, math: 20 },
-    },
-    unlockedBadgeIds: ['triad-start', 'summary-starter'],
+    studyHoursLoggedTotal: 0,
+    dailyStudyHours: {},
+    dailyQuestionsSolved: {},
+    unlockedBadgeIds: [],
     targetDailyStudyHours: 8.0,
-    masteryPoints: 180,
+    masteryPoints: 0,
     activeRewardPasses: [],
-    unlockedMockSummaryIds: ['pt-1'],
+    unlockedMockSummaryIds: [],
     energyProfile: {
       peakAlertSlot: 'morning',
       prioritizeHardestInPeakHours: true,
@@ -57,6 +48,7 @@ export function getDefaultInitialState(): UserStudyState {
       },
     },
     quizHistory: [],
+    focusLogs: [],
   };
 }
 
@@ -80,17 +72,21 @@ export function loadUserStudyState(): UserStudyState {
           moduleEx2: false,
           eklavya: false,
           prevPartTest: false,
+          mathongoSolved: 0,
+          moduleEx2Solved: 0,
+          eklavyaSolved: 0,
+          confidenceRating: 1,
         };
       }
     });
     if (parsed.masteryPoints === undefined) {
-      parsed.masteryPoints = 180;
+      parsed.masteryPoints = 0;
     }
     if (!parsed.activeRewardPasses) {
       parsed.activeRewardPasses = [];
     }
     if (!parsed.unlockedMockSummaryIds) {
-      parsed.unlockedMockSummaryIds = ['pt-1'];
+      parsed.unlockedMockSummaryIds = [];
     }
     if (!parsed.energyProfile) {
       parsed.energyProfile = {

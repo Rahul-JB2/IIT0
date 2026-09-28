@@ -25,25 +25,25 @@ export const TestPlannerView: React.FC<TestPlannerViewProps> = ({
   return (
     <div className="space-y-4 sm:space-y-6 w-full max-w-full overflow-hidden">
       {/* Planner Header & Tabs */}
-      <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
             <span className="font-semibold text-amber-400">BSEB SUPER-50 (2025-27)</span>
             <span aria-hidden="true">·</span>
-            <span>Official Test Series Master Schedule</span>
+            <span>Official Test Schedule & Syllabus</span>
           </div>
           <h2 className="text-xl font-bold text-white tracking-tight">
-            Test Series Calendar & Detailed Syllabus
+            Test Series Calendar
           </h2>
         </div>
 
         {/* Tab switcher: Part Tests (1-8) vs Full Tests (1-11) */}
-        <div className="flex items-center gap-1 p-1 bg-slate-950 border border-slate-800 rounded-lg shrink-0">
+        <div className="flex items-center gap-1 p-1 bg-slate-950 border border-slate-800 rounded-xl shrink-0">
           <button
             onClick={() => setActiveTab('part')}
-            className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
               activeTab === 'part'
-                ? 'bg-slate-800 text-amber-400 shadow-sm'
+                ? 'bg-amber-400 text-slate-950 shadow-sm'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
@@ -51,9 +51,9 @@ export const TestPlannerView: React.FC<TestPlannerViewProps> = ({
           </button>
           <button
             onClick={() => setActiveTab('full')}
-            className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${
+            className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
               activeTab === 'full'
-                ? 'bg-slate-800 text-amber-400 shadow-sm'
+                ? 'bg-amber-400 text-slate-950 shadow-sm'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >

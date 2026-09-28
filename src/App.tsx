@@ -63,12 +63,9 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<string>('daily-goals');
   const [isAssistantOpen, setIsAssistantOpen] = useState<boolean>(false);
 
-  // Android Native App Splash Screen & Frame State
+  // App Splash Screen State
   const [showSplash, setShowSplash] = useState<boolean>(() => {
     return !sessionStorage.getItem('super50_splash_shown');
-  });
-  const [appFrameMode, setAppFrameMode] = useState<'mobile' | 'expanded'>(() => {
-    return (localStorage.getItem('super50_app_frame_mode') as 'mobile' | 'expanded') || 'mobile';
   });
   
   // Firebase Auth state
@@ -724,15 +721,9 @@ export default function App() {
         />
       )}
 
-      {/* Android Device Shell Container */}
-      <div
-        className={`w-full min-h-screen flex flex-col transition-all duration-300 relative overflow-x-hidden ${
-          appFrameMode === 'mobile'
-            ? 'max-w-md sm:max-w-xl mx-auto shadow-2xl shadow-black border-x border-slate-900 bg-slate-950'
-            : 'max-w-7xl mx-auto bg-slate-950'
-        }`}
-      >
-        {/* Top Header / Material App Bar */}
+      {/* Main App Container */}
+      <div className="w-full min-h-screen flex flex-col relative overflow-x-hidden max-w-5xl mx-auto">
+        {/* Top Header */}
         <Header
           activeTab={activeTab}
           setActiveTab={setActiveTab}
@@ -742,29 +733,11 @@ export default function App() {
           totalStudyHours={state.studyHoursLoggedTotal}
           onReset={handleResetData}
           onOpenAssistant={() => setIsAssistantOpen(true)}
-          masteryPoints={state.masteryPoints ?? 180}
+          masteryPoints={state.masteryPoints ?? 0}
         />
 
-        {/* Desktop View Switcher Pill (Discreet toggle on larger screens) */}
-        <div className="hidden sm:flex items-center justify-between px-4 py-1 bg-slate-900/40 border-b border-slate-800/60 text-[10px] font-mono text-slate-400">
-          <span className="flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-            Android SDK Runtime • BSEB 2025-27
-          </span>
-          <button
-            onClick={() => {
-              const next = appFrameMode === 'mobile' ? 'expanded' : 'mobile';
-              setAppFrameMode(next);
-              localStorage.setItem('super50_app_frame_mode', next);
-            }}
-            className="hover:text-amber-300 transition underline underline-offset-2 flex items-center gap-1"
-          >
-            {appFrameMode === 'mobile' ? '🖥️ Wide View' : '📱 Android Phone View'}
-          </button>
-        </div>
-
         {/* Main Content Area */}
-        <main className="flex-1 w-full px-3 sm:px-4 py-3 sm:py-4 overflow-x-hidden">
+        <main className="flex-1 w-full px-2.5 sm:px-5 py-2 sm:py-4 overflow-x-hidden">
         
         {/* Next Imminent Test Countdown & Syllabus Banner */}
         <NextTestBanner
@@ -934,21 +907,6 @@ export default function App() {
         isCloudSynced={!!currentUser}
         onOpenAssistant={() => setIsAssistantOpen(true)}
       />
-
-      {/* Floating Gemini Voice & Progress Assistant Trigger (Always Persistent) */}
-      <button
-        onClick={() => setIsAssistantOpen(true)}
-        className="fixed bottom-20 sm:bottom-24 right-3 sm:right-6 z-50 bg-gradient-to-tr from-sky-500 via-indigo-600 to-amber-400 p-[2px] rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all group"
-        title="Open Gemini Voice & Text Assistant (Auto-mark progress & check pending tasks)"
-      >
-        <div className="bg-slate-950 hover:bg-slate-900 px-3 py-2 sm:px-3.5 sm:py-2.5 rounded-full flex items-center gap-1.5 sm:gap-2 text-white transition-colors border border-amber-400/30">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 animate-pulse" />
-          <span className="text-[11px] sm:text-xs font-bold tracking-tight bg-gradient-to-r from-amber-300 via-white to-sky-300 bg-clip-text text-transparent">
-            Gemini AI
-          </span>
-        </div>
-      </button>
 
       {/* Google Gemini Super-50 Voice & Progress Assistant Modal */}
       <GeminiAssistantModal

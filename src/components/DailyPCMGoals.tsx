@@ -308,16 +308,16 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
   return (
     <div className="space-y-4 sm:space-y-6 w-full max-w-full overflow-hidden">
       {/* Daily Header Bar */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-4 sm:p-5 space-y-3">
+      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
-              <span className="font-semibold text-slate-300">Daily PCM Triad</span>
+              <span className="font-semibold text-amber-400">Daily PCM Triad</span>
               <span aria-hidden="true">·</span>
-              <span>Automatically Generated Schedule</span>
+              <span>Autonomous Study Plan</span>
               <span aria-hidden="true">·</span>
-              <span className="font-mono text-amber-400 tabular-nums">
-                {completedCount} / 3 Completed ({Math.round((completedCount / 3) * 100)}%)
+              <span className="font-mono text-slate-300 font-semibold tabular-nums">
+                {completedCount} of 3 Done ({Math.round((completedCount / 3) * 100)}%)
               </span>
             </div>
             <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
@@ -328,11 +328,11 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
           <div className="flex items-center gap-2.5">
             <button
               onClick={onRegeneratePlan}
-              className="px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors flex items-center gap-1.5"
+              className="px-3.5 py-1.5 text-xs font-semibold text-slate-200 bg-slate-800 hover:bg-slate-700 rounded-xl transition-colors flex items-center gap-1.5 active:scale-95 shadow-sm"
               title="Recalculate priorities based on uncompleted milestones & upcoming test"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              Regenerate Today's PCM
+              <span>Regenerate Triad</span>
             </button>
           </div>
         </div>
@@ -357,85 +357,83 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
         {onNavigateTab && (
           <div className="flex items-center gap-2 pt-1 overflow-x-auto no-scrollbar">
             <button
-              onClick={() => onNavigateTab('pre-test-mode')}
-              className="px-2.5 py-1 text-xs rounded-lg bg-amber-950/60 hover:bg-amber-900/60 text-amber-300 border border-amber-800/60 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
-            >
-              <Zap className="w-3.5 h-3.5 text-amber-400" />
-              1-Day Pre-Test Blitz
-            </button>
-            <button
               onClick={() => onNavigateTab('chapter-matrix')}
-              className="px-2.5 py-1 text-xs rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
+              className="px-3 py-1.5 text-xs rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
             >
               <BookOpen className="w-3.5 h-3.5 text-sky-400" />
-              6-Milestone Matrix
+              <span>Milestone Matrix</span>
+            </button>
+            <button
+              onClick={() => onNavigateTab('pre-test-mode')}
+              className="px-3 py-1.5 text-xs rounded-xl bg-slate-950 hover:bg-slate-800 text-amber-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-400" />
+              <span>1-Day Blitz Drill</span>
             </button>
             <button
               onClick={() => onNavigateTab('test-scores')}
-              className="px-2.5 py-1 text-xs rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
+              className="px-3 py-1.5 text-xs rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
             >
               <Flame className="w-3.5 h-3.5 text-rose-400" />
-              Weakness Heatmap
+              <span>Analytics & Scores</span>
             </button>
             <button
               onClick={() => onNavigateTab('study-guard')}
-              className="px-2.5 py-1 text-xs rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
+              className="px-3 py-1.5 text-xs rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 flex items-center gap-1.5 font-medium shrink-0 transition-colors"
             >
               <Timer className="w-3.5 h-3.5 text-emerald-400" />
-              Regain Detox Guard
+              <span>Study Guard</span>
             </button>
           </div>
         )}
       </div>
 
-      {/* GAMIFIED STUDY STREAK & JEE MASTERY POINTS (JMP) REWARD HUD */}
-      <div className="bg-gradient-to-r from-amber-950/40 via-slate-900 to-indigo-950/40 border border-amber-500/40 rounded-xl p-3 sm:p-4 space-y-2.5 shadow-md shadow-amber-950/20">
-        <div className="flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-slate-950 font-bold shrink-0 shadow-sm shadow-amber-500/20">
-              <Sparkles className="w-4 h-4 stroke-[2.5]" />
-            </div>
-            <div>
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <span className="text-xs font-bold text-white tracking-tight">Study Streak & Rewards</span>
-                <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-amber-950 border border-amber-700 text-amber-300 font-bold">
-                  {aspirantLvl.badge}
-                </span>
-              </div>
-              <span className="text-[10px] text-slate-400 block">
-                {aspirantLvl.title} • {streakMultiplier}x Point Multiplier
-              </span>
-            </div>
+      {/* High-Density 4-Metric Daily Status Strip */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+        <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between">
+          <div>
+            <span className="text-[10px] text-slate-400 font-mono block">Triad Goal</span>
+            <span className="text-xs sm:text-sm font-bold text-white font-mono">{completedCount}/3 Done</span>
           </div>
-
-          <div className="flex items-center gap-2">
-            <div className="text-right">
-              <div className="flex items-center justify-end gap-1 font-mono font-extrabold text-amber-400 text-xs sm:text-sm">
-                <Sparkles className="w-3 h-3 text-amber-400" />
-                <span>{masteryPoints} JMP</span>
-              </div>
-              <div className="flex items-center justify-end gap-1 text-[10px] text-orange-400 font-mono">
-                <Flame className="w-2.5 h-2.5 fill-orange-400" />
-                <span>{streak}d Streak</span>
-              </div>
-            </div>
-
-            {onOpenRewardStore && (
-              <button
-                onClick={onOpenRewardStore}
-                className="px-2.5 py-1.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-300 hover:to-orange-300 rounded-lg shadow-sm flex items-center gap-1 shrink-0 active:scale-95 transition"
-                title="Redeem points for Pocket FM, YouTube, or Gaming break passes"
-              >
-                <Award className="w-3.5 h-3.5" />
-                <span>Store</span>
-              </button>
-            )}
-          </div>
+          <span className="text-[11px] font-bold text-amber-400 font-mono">{Math.round((completedCount / 3) * 100)}%</span>
         </div>
+
+        <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between">
+          <div>
+            <span className="text-[10px] text-slate-400 font-mono block">Study Hours</span>
+            <span className="text-xs sm:text-sm font-bold text-sky-400 font-mono">{dailyHoursToday.toFixed(1)}h / {targetDailyHours.toFixed(1)}h</span>
+          </div>
+          <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+        </div>
+
+        <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between">
+          <div>
+            <span className="text-[10px] text-slate-400 font-mono block">Questions Quota</span>
+            <span className="text-xs sm:text-sm font-bold text-emerald-400 font-mono">{dailyQuestions.total}/100 Qs</span>
+          </div>
+          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+        </div>
+
+        <div className="bg-slate-900/70 border border-slate-800 rounded-xl p-2.5 flex items-center justify-between">
+          <div>
+            <span className="text-[10px] text-slate-400 font-mono block">Streak & JMP</span>
+            <span className="text-xs sm:text-sm font-bold text-amber-400 font-mono">{streak}d · {masteryPoints} JMP</span>
+          </div>
+          {onOpenRewardStore && (
+            <button
+              onClick={onOpenRewardStore}
+              className="px-2 py-1 bg-amber-400 hover:bg-amber-300 text-slate-950 rounded-lg text-[10px] font-bold transition active:scale-95 shadow-sm shrink-0"
+              title="Open Reward Store"
+            >
+              Store
+            </button>
+          )}
+        </div>
+      </div>
 
         {/* Active Reward Passes Ticker (e.g. Pocket FM story or YouTube break in progress) */}
         {activeRewardPasses.length > 0 && (
-          <div className="pt-1.5 border-t border-slate-800/80 flex flex-wrap items-center gap-2">
+          <div className="w-full p-2.5 bg-slate-900/60 border border-slate-800 rounded-xl flex flex-wrap items-center gap-2">
             <span className="text-[10px] text-slate-400 font-mono">Active Break:</span>
             {activeRewardPasses.map((pass) => (
               <div
@@ -457,7 +455,6 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
             ))}
           </div>
         )}
-      </div>
 
       {/* 1-PAGE SUMMARY PUNISHMENT/DISCIPLINE LOCKDOWN SIREN ALERT (Compact 40% Dimensions) */}
       {overdueViolations.length > 0 && (
@@ -485,6 +482,265 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
           </button>
         </div>
       )}
+
+      {/* 3 PCM Daily Goal Cards (Physics · Chemistry · Math) - Placed Prominently at Top */}
+      <div className="space-y-2.5">
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-400" />
+            <h3 className="text-sm font-bold text-white tracking-tight">
+              Today's 3 Chapter Milestones
+            </h3>
+          </div>
+          <span className="text-[10px] font-mono text-slate-400">
+            {completedCount} / 3 Completed
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-4">
+          {plan.goals.map((goal) => {
+            const colors = getSubjectColor(goal.subject);
+            const isStopwatchForThis = activeStopwatchGoalId === goal.id;
+            const currentProg = chapterProgress[goal.chapterId];
+            const isDone = !!currentProg?.[goal.milestoneKey];
+
+            return (
+              <div
+                key={goal.id}
+                className={`rounded-2xl border transition-all flex flex-col justify-between ${
+                  isDone
+                    ? 'bg-slate-900/40 border-slate-800/80 opacity-90'
+                    : `${colors.bg} ${colors.border} shadow-sm`
+                } p-4 sm:p-5`}
+              >
+                <div>
+                  {/* Top card bar: Subject & Branch & Target Minutes */}
+                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-md ${colors.badge}`}>
+                        {goal.subject}
+                      </span>
+                      {goal.chemBranch && (
+                        <span className="text-[11px] text-slate-400 font-medium">
+                          · {goal.chemBranch}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-xs font-mono text-slate-400 flex items-center gap-1 tabular-nums">
+                      <Clock className="w-3 h-3 text-slate-500" />
+                      {goal.targetMinutes} min
+                    </span>
+                  </div>
+
+                  {/* Energy & Alert Hours Time Slot Tag */}
+                  {goal.recommendedTimeSlot && (
+                    <div
+                      className={`text-[10px] font-mono px-2 py-0.5 rounded-lg mb-2 flex items-center justify-between gap-1.5 ${
+                        goal.isHardestChapter
+                          ? 'bg-amber-950/80 border border-amber-600/70 text-amber-300 font-bold shadow-sm'
+                          : 'bg-slate-950/80 border border-slate-800 text-slate-300'
+                      }`}
+                    >
+                      <div className="flex items-center gap-1.5 truncate">
+                        {goal.isHardestChapter && (
+                          <Zap className="w-3 h-3 text-amber-400 shrink-0 fill-amber-400" />
+                        )}
+                        <span className="truncate">{goal.recommendedTimeSlot}</span>
+                      </div>
+                      {goal.difficultyRating && (
+                        <span
+                          className={`px-1.5 py-0.2 rounded text-[9px] uppercase font-bold shrink-0 ${
+                            goal.difficultyRating === 'High'
+                              ? 'bg-rose-950 text-rose-300 border border-rose-800'
+                              : goal.difficultyRating === 'Medium'
+                              ? 'bg-amber-950 text-amber-300 border border-amber-800'
+                              : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                          }`}
+                        >
+                          {goal.difficultyRating}
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Chapter Name */}
+                  <h4 className="text-base font-bold text-white mb-2 leading-snug">
+                    {goal.chapterName}
+                  </h4>
+
+                  {/* Milestone Task Badge & Description */}
+                  <div className="bg-slate-950/70 border border-slate-800/80 rounded-xl p-2.5 mb-2.5 space-y-1">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-slate-400 font-medium">Milestone:</span>
+                      <span className="font-semibold text-slate-200">
+                        {MILESTONES.find((m) => m.key === goal.milestoneKey)?.label || goal.milestoneKey}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-slate-400 leading-relaxed">
+                      {MILESTONES.find((m) => m.key === goal.milestoneKey)?.description}
+                    </p>
+                    <div className="pt-1 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono">
+                      <span className="text-slate-400">Target Questions:</span>
+                      <span className="text-amber-400 font-bold">
+                        {goal.targetQuestions || (goal.subject === 'Math' ? 25 : goal.subject === 'Chemistry' ? 40 : 35)} Qs
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* AI Practice Quiz Button (10 Random Questions) */}
+                  <button
+                    onClick={() => setSelectedQuizGoal(goal)}
+                    className="w-full mb-2.5 py-1.5 px-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 hover:border-amber-400/50 text-amber-300 font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition active:scale-95"
+                    title="Practice 10 high-yield questions for this milestone"
+                  >
+                    <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Practice Quiz (10 Qs)</span>
+                  </button>
+
+                  {/* Quick actions: 25-min focus launch + 1-Page Summary view */}
+                  <div className="grid grid-cols-2 gap-1.5 mb-2.5">
+                    <button
+                      onClick={() => {
+                        setSelectedFocusGoalId(goal.id);
+                        handleResetFocusTimer(25);
+                        setIsFocusRunning(true);
+                      }}
+                      className="py-1 px-2 bg-slate-950 border border-slate-800 hover:border-amber-500/60 text-amber-400 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition"
+                    >
+                      <Timer className="w-3 h-3 shrink-0" />
+                      <span className="truncate">25m Timer</span>
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        const chapter = ALL_CHAPTERS.find((c) => c.id === goal.chapterId);
+                        if (chapter && onOpenChapterModal) {
+                          onOpenChapterModal(chapter);
+                        }
+                      }}
+                      className="py-1 px-2 bg-slate-950 border border-slate-800 hover:border-sky-500/60 text-sky-400 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition"
+                      title="View Notes & Formulas"
+                    >
+                      <BookOpen className="w-3 h-3 shrink-0" />
+                      <span className="truncate">1-Page Notes</span>
+                    </button>
+                  </div>
+
+                  {/* In-Card Stopwatch Timer */}
+                  <div className="bg-slate-950/50 border border-slate-800/60 rounded-xl p-2 mb-3 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-mono text-xs font-semibold text-slate-300 tabular-nums">
+                        {isStopwatchForThis ? formatTimer(stopwatchSeconds) : '00:00'}
+                      </span>
+                      {isStopwatchForThis && isStopwatchRunning && (
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                      )}
+                    </div>
+
+                    <div className="flex items-center gap-1">
+                      {isStopwatchForThis && isStopwatchRunning ? (
+                        <button
+                          onClick={handlePauseStopwatch}
+                          className="px-2 py-0.5 text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium flex items-center gap-1 transition"
+                        >
+                          <Pause className="w-3 h-3 text-amber-400" /> Pause
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleStartStopwatch(goal.id)}
+                          className="px-2 py-0.5 text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium flex items-center gap-1 transition"
+                        >
+                          <Play className="w-3 h-3 text-emerald-400" /> Stopwatch
+                        </button>
+                      )}
+                      {isStopwatchForThis && stopwatchSeconds > 0 && (
+                        <button
+                          onClick={handleResetStopwatch}
+                          title="Reset & log study time"
+                          className="p-1 text-slate-500 hover:text-slate-300 rounded"
+                        >
+                          <RotateCcw className="w-3 h-3" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Actions: Checkbox & Chapter Swap */}
+                <div className="pt-2.5 border-t border-slate-800/80 flex flex-col gap-1.5">
+                  <button
+                    onClick={() => onToggleGoalMilestone(goal.chapterId, goal.milestoneKey, !isDone)}
+                    className={`w-full py-2 px-3 rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
+                      isDone
+                        ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-700/60 hover:bg-emerald-900/60'
+                        : 'bg-slate-800 hover:bg-slate-700 text-white shadow-sm'
+                    }`}
+                  >
+                    <div
+                      className={`w-4 h-4 rounded flex items-center justify-center border transition-colors ${
+                        isDone
+                          ? 'bg-emerald-500 border-emerald-400 text-slate-950'
+                          : 'border-slate-500 bg-slate-950'
+                      }`}
+                    >
+                      {isDone && <Check className="w-3 h-3 stroke-[3]" />}
+                    </div>
+                    <span>{isDone ? 'Completed Milestone' : 'Mark as Done'}</span>
+                  </button>
+
+                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-0.5">
+                    <button
+                      onClick={() => setSwappingGoalId(swappingGoalId === goal.id ? null : goal.id)}
+                      className="hover:text-slate-200 underline decoration-slate-600 transition-colors flex items-center gap-1"
+                    >
+                      <ArrowRightLeft className="w-3 h-3" />
+                      Customize Chapter
+                    </button>
+                  </div>
+
+                  {swappingGoalId === goal.id && (
+                    <div className="mt-2 p-2.5 bg-slate-950 border border-slate-800 rounded-xl space-y-2 text-xs">
+                      <div>
+                        <label className="text-[10px] text-slate-400 block mb-1">
+                          Select Chapter ({goal.subject}):
+                        </label>
+                        <select
+                          value={goal.chapterId}
+                          onChange={(e) => onSwapChapter(goal.id, e.target.value)}
+                          className="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-none"
+                        >
+                          {ALL_CHAPTERS.filter((c) => c.subject === goal.subject).map((c) => (
+                            <option key={c.id} value={c.id}>
+                              {c.name} {c.chemBranch ? `(${c.chemBranch})` : ''}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="text-[10px] text-slate-400 block mb-1">
+                          Select Milestone:
+                        </label>
+                        <select
+                          value={goal.milestoneKey}
+                          onChange={(e) => onChangeMilestone(goal.id, e.target.value as MilestoneKey)}
+                          className="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-none"
+                        >
+                          {MILESTONES.map((m) => (
+                            <option key={m.key} value={m.key}>
+                              {m.label} ({m.estimatedMinutes}m)
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
 
       {/* DAILY HOURS TRACKER & 100-QUESTION PRACTICE QUOTA SECTION */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -939,32 +1195,26 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
         )}
       </div>
 
-      {/* 25-Minute Focus Pomodoro Timer Section */}
-      <div className="bg-gradient-to-br from-slate-900/90 to-slate-950 border border-amber-500/30 rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+      {/* Focus Pomodoro Timer Section */}
+      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left Side: Target Goal Picker & Info */}
           <div className="space-y-3 flex-1 w-full md:w-auto">
             <div className="flex items-center gap-2">
-              <span className="flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wide bg-amber-950/60 border border-amber-800/60 px-2.5 py-0.5 rounded-full">
-                <Timer className="w-3.5 h-3.5 text-amber-400" />
-                25-Min Focus Pomodoro Timer
+              <span className="flex items-center gap-1.5 text-xs font-bold text-amber-400">
+                <Timer className="w-4 h-4 text-amber-400" />
+                <span>Deep Work Focus Session</span>
               </span>
               <button
                 onClick={() => setSoundEnabled(!soundEnabled)}
                 className={`p-1 rounded-md text-xs transition-colors ${
-                  soundEnabled ? 'text-amber-400 hover:bg-amber-950/40' : 'text-slate-500 hover:bg-slate-800'
+                  soundEnabled ? 'text-amber-400 hover:bg-slate-800' : 'text-slate-500 hover:bg-slate-800'
                 }`}
                 title={soundEnabled ? 'Sound alert enabled' : 'Sound alert muted'}
               >
                 {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
               </button>
             </div>
-
-            <h3 className="text-xl font-bold text-white tracking-tight">
-              Deep Work Focus Session
-            </h3>
 
             {/* Chapter Goal Selector */}
             <div className="space-y-1.5">
@@ -1190,253 +1440,7 @@ export const DailyPCMGoals: React.FC<DailyPCMGoalsProps> = ({
         </div>
       )}
 
-      {/* The 3 PCM Goal Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {plan.goals.map((goal) => {
-          const colors = getSubjectColor(goal.subject);
-          const isStopwatchForThis = activeStopwatchGoalId === goal.id;
-          const currentProg = chapterProgress[goal.chapterId];
-          const isDone = !!currentProg?.[goal.milestoneKey];
 
-          return (
-            <div
-              key={goal.id}
-              className={`rounded-xl border transition-all flex flex-col justify-between ${
-                isDone
-                  ? 'bg-slate-900/40 border-slate-800/80 opacity-90'
-                  : `${colors.bg} ${colors.border} shadow-sm`
-              } p-5`}
-            >
-              <div>
-                {/* Top card bar: Subject & Branch & Target Minutes */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-1.5">
-                    <span className={`text-[11px] font-semibold px-2 py-0.5 rounded ${colors.badge}`}>
-                      {goal.subject}
-                    </span>
-                    {goal.chemBranch && (
-                      <span className="text-[11px] text-slate-400 font-medium">
-                        · {goal.chemBranch}
-                      </span>
-                    )}
-                  </div>
-                  <span className="text-xs font-mono text-slate-400 flex items-center gap-1 tabular-nums">
-                    <Clock className="w-3 h-3 text-slate-500" />
-                    {goal.targetMinutes} min
-                  </span>
-                </div>
-
-                {/* Energy & Alert Hours Time Slot Tag */}
-                {goal.recommendedTimeSlot && (
-                  <div
-                    className={`text-[10px] font-mono px-2.5 py-1 rounded-lg mb-2.5 flex items-center justify-between gap-1.5 ${
-                      goal.isHardestChapter
-                        ? 'bg-amber-950/80 border border-amber-600/70 text-amber-300 font-bold shadow-sm ring-1 ring-amber-500/20'
-                        : 'bg-slate-950/80 border border-slate-800 text-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-center gap-1.5 truncate">
-                      {goal.isHardestChapter && (
-                        <Zap className="w-3 h-3 text-amber-400 shrink-0 fill-amber-400" />
-                      )}
-                      <span className="truncate">{goal.recommendedTimeSlot}</span>
-                    </div>
-                    {goal.difficultyRating && (
-                      <span
-                        className={`px-1.5 py-0.5 rounded text-[9px] uppercase font-bold shrink-0 ${
-                          goal.difficultyRating === 'High'
-                            ? 'bg-rose-950 text-rose-300 border border-rose-800'
-                            : goal.difficultyRating === 'Medium'
-                            ? 'bg-amber-950 text-amber-300 border border-amber-800'
-                            : 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                        }`}
-                      >
-                        {goal.difficultyRating} Diff
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                {/* Chapter Name */}
-                <h3 className="text-base font-bold text-white mb-2 leading-snug">
-                  {goal.chapterName}
-                </h3>
-
-                {/* Milestone Task Badge & Description */}
-                <div className="bg-slate-950/70 border border-slate-800/80 rounded-lg p-3 mb-3 space-y-1.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-400 font-medium">Target Milestone:</span>
-                    <span className="font-semibold text-slate-200">
-                      {MILESTONES.find((m) => m.key === goal.milestoneKey)?.label || goal.milestoneKey}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
-                    {MILESTONES.find((m) => m.key === goal.milestoneKey)?.description}
-                  </p>
-                  <div className="pt-1 border-t border-slate-800/60 flex items-center justify-between text-[10px] font-mono">
-                    <span className="text-slate-400">Daily Question Quota:</span>
-                    <span className="text-amber-400 font-bold">
-                      {goal.targetQuestions || (goal.subject === 'Math' ? 25 : goal.subject === 'Chemistry' ? 40 : 35)} Questions Target
-                    </span>
-                  </div>
-                </div>
-
-                {/* AI Practice Quiz Button (10 Random Questions) */}
-                <button
-                  onClick={() => setSelectedQuizGoal(goal)}
-                  className="w-full mb-3 py-2 px-3 bg-gradient-to-r from-amber-500/15 via-amber-400/25 to-amber-500/15 hover:from-amber-500/25 hover:to-amber-400/35 border border-amber-500/40 hover:border-amber-400/60 text-amber-300 font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all group"
-                  title="Generate or pull 10 high-yield retention questions for this milestone"
-                >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400 group-hover:rotate-12 transition-transform" />
-                  <span>AI Practice Quiz (10 Questions)</span>
-                </button>
-
-                {/* Quick actions: 25-min focus launch + 1-Page Summary view */}
-                <div className="grid grid-cols-2 gap-2 mb-3">
-                  <button
-                    onClick={() => {
-                      setSelectedFocusGoalId(goal.id);
-                      handleResetFocusTimer(25);
-                      setIsFocusRunning(true);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="py-1.5 px-2 bg-slate-950 border border-slate-800 hover:border-amber-500/60 text-amber-400 hover:text-amber-300 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-colors"
-                  >
-                    <Timer className="w-3.5 h-3.5 shrink-0" />
-                    <span className="truncate">25m Focus</span>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      const chapter = ALL_CHAPTERS.find((c) => c.id === goal.chapterId);
-                      if (chapter && onOpenChapterModal) {
-                        onOpenChapterModal(chapter);
-                      }
-                    }}
-                    className="py-1.5 px-2 bg-slate-950 border border-slate-800 hover:border-sky-500/60 text-sky-400 hover:text-sky-300 rounded-lg text-xs font-medium flex items-center justify-center gap-1 transition-colors"
-                    title="View Theory, 1-Page Summary, and Derivations"
-                  >
-                    <BookOpen className="w-3.5 h-3.5 shrink-0" />
-                    <span className="truncate">1-Page Notes</span>
-                  </button>
-                </div>
-
-                {/* Study Stopwatch Timer */}
-                <div className="bg-slate-950/50 border border-slate-800/60 rounded-lg p-2.5 mb-4 flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-xs font-semibold text-slate-300 tabular-nums">
-                      {isStopwatchForThis ? formatTimer(stopwatchSeconds) : '00:00'}
-                    </span>
-                    {isStopwatchForThis && isStopwatchRunning && (
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-1.5">
-                    {isStopwatchForThis && isStopwatchRunning ? (
-                      <button
-                        onClick={handlePauseStopwatch}
-                        className="px-2 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium flex items-center gap-1 transition-colors"
-                      >
-                        <Pause className="w-3 h-3 text-amber-400" /> Pause
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleStartStopwatch(goal.id)}
-                        className="px-2 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 rounded font-medium flex items-center gap-1 transition-colors"
-                      >
-                        <Play className="w-3 h-3 text-emerald-400" /> Stopwatch
-                      </button>
-                    )}
-                    {isStopwatchForThis && stopwatchSeconds > 0 && (
-                      <button
-                        onClick={handleResetStopwatch}
-                        title="Reset & log study time"
-                        className="p-1 text-slate-500 hover:text-slate-300 rounded"
-                      >
-                        <RotateCcw className="w-3 h-3" />
-                      </button>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Actions: Checkbox & Chapter Swap */}
-              <div className="pt-3 border-t border-slate-800/80 flex flex-col gap-2">
-                <button
-                  onClick={() => onToggleGoalMilestone(goal.chapterId, goal.milestoneKey, !isDone)}
-                  className={`w-full py-2 px-3 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
-                    isDone
-                      ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-700/60 hover:bg-emerald-900/60'
-                      : 'bg-slate-800 hover:bg-slate-700 text-white shadow-sm'
-                  }`}
-                >
-                  <div
-                    className={`w-4 h-4 rounded flex items-center justify-center border transition-colors ${
-                      isDone
-                        ? 'bg-emerald-500 border-emerald-400 text-slate-950'
-                        : 'border-slate-500 bg-slate-950'
-                    }`}
-                  >
-                    {isDone && <Check className="w-3 h-3 stroke-[3]" />}
-                  </div>
-                  <span>{isDone ? 'Completed Milestone' : 'Mark as Done'}</span>
-                </button>
-
-                {/* Swap Chapter or Change Milestone selector toggle */}
-                <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1">
-                  <button
-                    onClick={() => setSwappingGoalId(swappingGoalId === goal.id ? null : goal.id)}
-                    className="hover:text-slate-200 underline decoration-slate-600 transition-colors flex items-center gap-1"
-                  >
-                    <ArrowRightLeft className="w-3 h-3" />
-                    Customize Chapter / Milestone
-                  </button>
-                </div>
-
-                {/* Inline customization drawer */}
-                {swappingGoalId === goal.id && (
-                  <div className="mt-2 p-3 bg-slate-950 border border-slate-800 rounded-lg space-y-2 text-xs">
-                    <div>
-                      <label className="text-[11px] text-slate-400 block mb-1">
-                        Select Chapter ({goal.subject}):
-                      </label>
-                      <select
-                        value={goal.chapterId}
-                        onChange={(e) => onSwapChapter(goal.id, e.target.value)}
-                        className="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded px-2 py-1 text-xs focus:outline-none"
-                      >
-                        {ALL_CHAPTERS.filter((c) => c.subject === goal.subject).map((c) => (
-                          <option key={c.id} value={c.id}>
-                            {c.name} {c.chemBranch ? `(${c.chemBranch})` : ''}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="text-[11px] text-slate-400 block mb-1">
-                        Select Milestone:
-                      </label>
-                      <select
-                        value={goal.milestoneKey}
-                        onChange={(e) => onChangeMilestone(goal.id, e.target.value as MilestoneKey)}
-                        className="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded px-2 py-1 text-xs focus:outline-none"
-                      >
-                        {MILESTONES.map((m) => (
-                          <option key={m.key} value={m.key}>
-                            {m.label} ({m.estimatedMinutes}m)
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
 
       {/* Super-50 PCM Daily Method Guide Box */}
       <div className="bg-slate-900/40 border border-slate-800 rounded-xl p-4 sm:p-5 text-xs text-slate-400 space-y-2">

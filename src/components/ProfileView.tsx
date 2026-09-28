@@ -207,7 +207,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   return (
     <div className="space-y-4 sm:space-y-6 pb-8 w-full max-w-full overflow-hidden">
       {/* Header Banner */}
-      <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs text-amber-400 font-semibold mb-1">
             <UserIcon className="w-3.5 h-3.5" />
@@ -222,7 +222,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
         </div>
 
         {/* Cloud Sync Status Indicator */}
-        <div className="flex items-center gap-3 bg-slate-950/70 border border-slate-800 rounded-lg p-2.5 shrink-0">
+        <div className="flex items-center gap-3 bg-slate-950/70 border border-slate-800 rounded-xl p-2.5 shrink-0">
           <div className="text-right text-xs">
             <span className="flex items-center justify-end gap-1.5 font-semibold">
               <Cloud className={`w-3.5 h-3.5 ${currentUser ? 'text-emerald-400' : 'text-slate-500'}`} />
@@ -240,7 +240,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
               onClick={onManualSync}
               disabled={isSyncing}
               title="Sync now with Firebase"
-              className="p-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-md transition-colors"
+              className="p-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-lg transition-colors"
             >
               <RefreshCw className={`w-4 h-4 ${isSyncing ? 'animate-spin text-amber-400' : ''}`} />
             </button>
@@ -249,7 +249,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
       </div>
 
       {/* Authentication Card */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-xl p-5 sm:p-6">
+      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 sm:p-6">
         {currentUser ? (
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="flex items-center gap-4">

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">IIT Super-50</string>
+    <string name="title_activity_main">IIT Super-50</string>
+    <string name="package_name">com.rahuljb2.iit</string>
+    <string name="custom_url_scheme">com.rahuljb2.iit</string>
+</resources>
