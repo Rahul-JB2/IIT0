@@ -2,7 +2,7 @@ name: Auto Retry IIT0 APK Build
 
 on:
   workflow_run:
-    workflows: [Build IIT0 Android APK]
+    workflows: ["Build Android APK", "Build IIT0 Android APK"]
     types: [completed]
 
 permissions:
