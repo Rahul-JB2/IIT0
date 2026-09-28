@@ -38,6 +38,10 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v4
 
+      - name: Make Gradle wrapper executable
+        working-directory: android
+        run: chmod +x gradlew
+
       - name: Build release APK
         working-directory: android
         run: ./gradlew assembleRelease --stacktrace
