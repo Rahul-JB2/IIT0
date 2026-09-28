@@ -1,13 +1,11 @@
 {
-	"appId": "com.bseb.super50",
+	"appId": "com.rahuljb2.iit",
 	"appName": "JEE Super-50",
 	"webDir": "dist",
-	"bundledWebRuntime": false,
 	"server": {
 		"androidScheme": "https"
 	},
 	"android": {
-		"allowMixedContent": true,
-		"webContentsDebuggingEnabled": false
+		"allowMixedContent": true
 	}
 }

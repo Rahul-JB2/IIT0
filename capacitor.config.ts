@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.bseb.super50',
+  appId: 'com.rahuljb2.iit',
   appName: 'JEE Super-50',
   webDir: 'dist',
   server: {
