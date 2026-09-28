@@ -1,8 +1,15 @@
-const config = {
-  appId: 'com.rahuljb2.iit',
-  appName: 'IIT Super-50',
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.bseb.super50',
+  appName: 'JEE Super-50',
   webDir: 'dist',
-  bundledWebRuntime: false,
+  server: {
+    androidScheme: 'https',
+  },
+  android: {
+    allowMixedContent: true,
+  },
 };
 
 export default config;
